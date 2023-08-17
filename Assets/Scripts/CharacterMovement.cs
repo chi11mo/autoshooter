@@ -1,39 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-Rigidbody2D body;
+    public float moveSpeed = 5f; // Adjust the movement speed as needed
 
-float horizontal;
-float vertical;
-float moveLimiter = 0.7f;
-float gravity = 0f;
-public float runSpeed = 20.0f;
+    private Rigidbody rb;
 
-void Start ()
-{
-   body = GetComponent<Rigidbody2D>();
-}
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
-void Update()
-{
-   // Gives a value between -1 and 1
-   horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-   vertical = Input.GetAxisRaw("Vertical"); // -1 is down
-}
+    private void Update()
+    {
+        // Read input axes for movement
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-void FixedUpdate()
-{
-   if (horizontal != 0 && vertical != 0) // Check for diagonal movement
-   {
-      // limit movement speed diagonally, so you move at 70% speed
-      horizontal *= moveLimiter;
-      vertical *= moveLimiter;
-   } 
+        // Calculate movement vector
+        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical) * moveSpeed * Time.deltaTime;
 
-   body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
-   transform.position += new Vector3(0f, gravity * Time.deltaTime, 0f);
-}
+        // Apply movement to the Rigidbody
+        rb.MovePosition(rb.position + movement);
+
+        // Rotate character to face the movement direction
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
+    }
 }
