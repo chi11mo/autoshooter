@@ -12,14 +12,13 @@ public class EnemyAI : MonoBehaviour
 
      private int hitCount = 0;
 
-    private Vector3 originalPosition;   
+
     private Transform playerTransform;
     private bool canAttack = true;
 
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        originalPosition = transform.position;
     }
 
     private void Update()
@@ -58,21 +57,9 @@ public class EnemyAI : MonoBehaviour
             {
                 Destroy(gameObject); // Destroy the enemy if hit count exceeds maxHits
             }
-            else
-            {
-                AdjustPositionOnHit();
-            }
+            
 
             Destroy(collision.gameObject); // Destroy the bullet
         }
-    }
-      private void AdjustPositionOnHit()
-    {
-        // Adjust the enemy's position on hit
-        float xOffset = Random.Range(-0.5f, 0.5f); // Change in x position
-        float zOffset = Random.Range(-0.5f, 0.5f); // Change in z position
-
-        Vector3 newPosition = new Vector3(originalPosition.x + xOffset, originalPosition.y, originalPosition.z + zOffset);
-        transform.position = newPosition;
     }
 }
