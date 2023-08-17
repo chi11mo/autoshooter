@@ -125,6 +125,7 @@ MonoBehaviour:
   attackRange: 3
   attackCooldown: 2
   damage: 10
+  maxHits: 2
 --- !u!54 &6978040947067197679
 Rigidbody:
   m_ObjectHideFlags: 0
