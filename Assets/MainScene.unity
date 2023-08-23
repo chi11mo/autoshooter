@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c29c446e5e84cf5bd66a375d9b6942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2117994505647465371, guid: 12b957779d5a1487ab8d51ef08f0f394, type: 3}
+  enemyPrefab: {fileID: 1320769219843760273, guid: 9108149b2610790459d0672a7788c571, type: 3}
   playerTransform: {fileID: 798012293}
   spawnInterval: 3
   spawnRadius: 10
